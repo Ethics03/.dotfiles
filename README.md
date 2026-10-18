@@ -1,14 +1,12 @@
 # dotfiles
 
-My Arch + Hyprland setup. Mostly Catppuccin Mocha, muted blue borders, and small gaps.
+My Arch + Hyprland setup, using Catppuccin Mocha with muted blue accents.
 
 [![Hyprland desktop with Neovim and Fastfetch](.github/assets/desktop.png)](.github/assets/desktop.png)
 
-*Neovim + tmux on the left, Fastfetch on the right. Click to zoom.*
-
 ## What I use
 
-| | |
+| Component | App |
 | --- | --- |
 | Desktop | Hyprland + Waybar |
 | Terminal | Kitty, Fish, Starship and tmux |
@@ -19,8 +17,7 @@ My Arch + Hyprland setup. Mostly Catppuccin Mocha, muted blue borders, and small
 | Editor | Neovim with LazyVim |
 | Wallpapers | awww, with a picker in Walker |
 
-The configs live here, with Stow linking them to their usual places in my home
-folder. The folder layout takes inspiration from [Primeagen's dotfiles](https://github.com/ThePrimeagen/.dotfiles).
+Each app has its own folder. GNU Stow links the configs into place.
 
 ## Using it
 
@@ -43,7 +40,8 @@ These are my personal configs, so check the monitor names and scales in
 `hypr/.config/hypr/monitors.lua` before using them elsewhere. Waybar also has my
 battery and backlight names, and a few theme and wallpaper paths use `/home/nev`.
 
-## Saving changes
+<details>
+<summary>Saving changes</summary>
 
 Edit your configs as usual — the links mean you're already editing the repo's files.
 To save them to GitHub, review your changes and run:
@@ -60,6 +58,8 @@ git push
 Nothing pushes automatically. On another machine, start with a clean working tree,
 then use `git pull --ff-only` and `stow --restow --target="$HOME" */` to update the links.
 Reload the apps you changed.
+
+</details>
 
 ## Handy keys
 
