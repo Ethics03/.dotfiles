@@ -56,7 +56,7 @@ hl.config({
         border_size = 2,
 
         col = {
-            active_border   = "rgba(526b94ff)",
+            active_border   = "rgba(465b7eff)",
             inactive_border = "rgba(45475aff)",
         },
 
@@ -123,6 +123,9 @@ hl.animation({ leaf = "workspaces",    enabled = true,  speed = 5, bezier = "eas
 hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 5, bezier = "easeOutQuint", style = "slide" })
 hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 5, bezier = "easeOutQuint", style = "slide" })
 hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "quick" })
+
+-- Remove slurp's selection overlay immediately so screenshots don't capture its tint.
+hl.layer_rule({ match = { namespace = "^selection$" }, no_anim = true })
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
