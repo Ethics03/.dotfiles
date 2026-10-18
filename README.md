@@ -67,6 +67,7 @@ Reload the apps you changed.
 | --- | --- |
 | Super + Q / E / R | Terminal / files / launcher |
 | Super + L / F / W | Lock / fullscreen / wallpapers |
+| Super + Shift + L | Sleep |
 | Print / Shift + Print | Screenshot / selected area |
 | Super + 1–0 | Switch workspace |
 | Super + Shift + 1–0 | Move a window to a workspace |
