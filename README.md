@@ -1,39 +1,30 @@
 # dotfiles
 
-My Arch Linux / Hyprland desktop, with Catppuccin Mocha colors and muted blue accents.
-Managed with Git and GNU Stow. Each top-level package mirrors its paths in `$HOME`,
-following [ThePrimeagen's layout](https://github.com/ThePrimeagen/.dotfiles).
+My Arch + Hyprland setup. Mostly Catppuccin Mocha, muted blue borders, and small gaps.
 
-[![Hyprland desktop with Waybar, Neovim, Kitty, tmux and Fastfetch](.github/assets/desktop.png)](.github/assets/desktop.png)
+[![Hyprland desktop with Neovim and Fastfetch](.github/assets/desktop.png)](.github/assets/desktop.png)
 
-*Neovim editing the tmux config alongside Fastfetch. Click the preview for the full-size image.*
+*Neovim + tmux on the left, Fastfetch on the right. Click to zoom.*
 
-```text
-hypr/.config/hypr/hyprland.lua  → ~/.config/hypr/hyprland.lua
-kitty/.config/kitty/kitty.conf  → ~/.config/kitty/kitty.conf
-tmux/.tmux.conf                → ~/.tmux.conf
-```
+## What I use
 
-## Packages
-
-| Package | Contents |
+| | |
 | --- | --- |
-| `hypr` | Hyprland, monitors, Hypridle, Hyprlock, Hyprtoolkit, screenshots and wallpaper picker |
-| `waybar` | Bar layout, CSS and SVG icons |
-| `walker` | Launcher configuration and Mocha theme |
-| `services` | User services for Walker, Elephant, Waybar and awww |
-| `kitty`, `fish`, `starship`, `tmux` | Terminal, shell, prompt and multiplexer |
-| `mako`, `fastfetch` | Notifications and system information |
-| `nvim` | LazyVim configuration and plugin lockfile |
-| `gtk`, `qt6ct` | GTK, Qt, fonts and cursor preferences |
-| `thunar` | File manager preferences and custom actions |
-| `applications` | Default apps, wallpaper launcher and native Wayland flags |
-| `wireplumber` | Keep Bluetooth high-fidelity playback; select headset mode manually |
+| Desktop | Hyprland + Waybar |
+| Terminal | Kitty, Fish, Starship and tmux |
+| Launcher | Walker + Elephant |
+| Notifications | Mako |
+| Lock screen | Hyprlock + Hypridle |
+| Files | Thunar |
+| Editor | Neovim with LazyVim |
+| Wallpapers | awww, with a picker in Walker |
 
-## Link configs
+The configs live here, with Stow linking them to their usual places in my home
+folder. The folder layout takes inspiration from [Primeagen's dotfiles](https://github.com/ThePrimeagen/.dotfiles).
 
-Install Stow, clone the repo, and move any conflicting configs into a backup first.
-Stow reports conflicts instead of replacing existing files.
+## Using it
+
+Install the apps you want first. Back up any existing configs before linking these.
 
 ```sh
 sudo pacman -S --needed stow
@@ -44,35 +35,52 @@ stow --target="$HOME" */
 systemctl --user daemon-reload
 ```
 
-The explicit target matters: the repo lives in `~/dev`, while the links belong in
-the home directory. To link or unlink individual packages:
+The first Stow command is a preview. You can also link just a few folders, like
+`stow --target="$HOME" kitty tmux`, or unlink them with
+`stow --delete --target="$HOME" kitty tmux`.
 
-```sh
-stow --target="$HOME" kitty tmux
-stow --delete --target="$HOME" kitty tmux
-```
+These are my personal configs, so check the monitor names and scales in
+`hypr/.config/hypr/monitors.lua` before using them elsewhere. Waybar also has my
+battery and backlight names, and a few theme and wallpaper paths use `/home/nev`.
 
-## Save changes
+## Saving changes
 
-Edit the usual files under `~/.config`; the symlinks point into this repo.
-Git tracks local edits immediately. Commit and push when ready:
+Edit your configs as usual — the links mean you're already editing the repo's files.
+To save them to GitHub, review your changes and run:
 
 ```sh
 cd ~/dev/dotfiles
-git status
 git diff
-git add <changed-files>
-git commit -m "Describe the config change"
+git status
+git add .
+git commit -m "Tweak desktop config"
 git push
 ```
 
-On another checkout, use `git pull --ff-only` with a clean working tree, then
-`stow --restow --target="$HOME" */` to refresh links for added or removed files.
-Reload affected applications as needed. There is no automatic commit or push job.
+Nothing pushes automatically. On another machine, start with a clean working tree,
+then use `git pull --ff-only` and `stow --restow --target="$HOME" */` to update the links.
+Reload the apps you changed.
 
-## Requirements
+## Handy keys
 
-The current desktop uses these Arch packages:
+| Shortcut | What it does |
+| --- | --- |
+| Super + Q / E / R | Terminal / files / launcher |
+| Super + L / F / W | Lock / fullscreen / wallpapers |
+| Print / Shift + Print | Screenshot / selected area |
+| Super + 1–0 | Switch workspace |
+| Super + Shift + 1–0 | Move a window to a workspace |
+| Super + Ctrl + M | Mirror or extend the displays |
+| Super + Ctrl + O / I | Toggle the external / laptop display |
+| Ctrl + Space | tmux prefix |
+
+Drop wallpapers in `~/Pictures/Wallpapers`, then press **Super + W** to pick one.
+Wallpapers and downloaded themes aren't included in the repo.
+
+<details>
+<summary>Packages and theme setup</summary>
+
+These are the packages used on my Arch install:
 
 ```text
 hyprland hypridle hyprlock hyprpolkitagent waybar kitty fish starship tmux
@@ -85,19 +93,19 @@ fastfetch neovim fd ripgrep fzf lazygit tree-sitter-cli stow
 ```
 
 Walker uses `walker-bin`, `elephant` and `elephant-desktopapplications` from the AUR.
-Hyprland starts the user services after importing the Wayland session environment.
-NetworkManager, Bluetooth and power-profiles-daemon also need their system services.
-The application defaults reference Helium, Vesktop and spotify-launcher.
+Hyprland starts Walker, Elephant, Waybar and the authentication agent at login.
+NetworkManager, Bluetooth and power-profiles-daemon need their system services too.
+The default app settings also reference Helium, Vesktop and spotify-launcher.
 
-Theme assets are installed separately:
+For the look, install these separately:
 
 - [Catppuccin GTK](https://github.com/catppuccin/gtk):
   `catppuccin-mocha-blue-standard+default` in `~/.local/share/themes`.
 - [Bibata cursors](https://github.com/ful1e5/Bibata_Cursor):
   `Bibata-Modern-Classic` in `~/.local/share/icons`.
 
-GTK 4 additionally uses these links, created by nwg-look on the current machine.
-After installing the theme, recreate them if absent:
+GTK 4 uses these extra links. nwg-look created them on my machine; recreate them
+if they're missing after installing the theme:
 
 ```sh
 ln -s "$HOME/.local/share/themes/catppuccin-mocha-blue-standard+default/gtk-4.0/assets" "$HOME/.config/gtk-4.0/assets"
@@ -105,34 +113,12 @@ ln -s "$HOME/.local/share/themes/catppuccin-mocha-blue-standard+default/gtk-4.0/
 ln -s "$HOME/.local/share/themes/catppuccin-mocha-blue-standard+default/gtk-4.0/gtk-dark.css" "$HOME/.config/gtk-4.0/gtk-dark.css"
 ```
 
-Keep wallpaper images in `~/Pictures/Wallpapers`; press **Super + W** to choose one.
-Wallpapers, theme distributions, application data, credentials and caches are not
-stored here. System files such as SDDM, boot configuration and drivers are managed
-separately.
+Bluetooth defaults to high-quality headphone audio with the laptop mic. You can
+still switch to the headset mic in pavucontrol by choosing **Headset Head Unit
+(mSBC)** and selecting it in your chat app. Switch back to **High Fidelity Playback
+(AAC)** and the laptop mic for stereo sound. Saved `wpctl` preferences override the
+WirePlumber config here.
 
-## Machine-specific settings
+SDDM, boot settings and drivers are separate from these dotfiles.
 
-This is a personal setup using Hyprland's Lua configuration. Before using it on
-another machine, review `hypr/.config/hypr/monitors.lua` (display names/scales) and
-`waybar/.config/waybar/config.jsonc` (outputs, backlight device and battery name).
-The Qt palette path, GTK 2 include, Thunar wallpaper action and wallpaper desktop
-entry currently reference `/home/nev`; adjust those paths for another username.
-
-Bluetooth uses the laptop mic with A2DP playback. In pavucontrol's Configuration
-tab, choose **Headset Head Unit (mSBC)** when the headphone mic is needed, then
-select it as the voice-chat input. Choose **High Fidelity Playback (AAC)** and the
-laptop input to restore stereo quality. WirePlumber reads the versioned policy
-at its next start; runtime changes made with `wpctl settings --save` take precedence.
-
-## Shortcuts
-
-| Shortcut | Action |
-| --- | --- |
-| Super + Q / E / R | Kitty / Thunar / Walker |
-| Super + L / F / W | Lock / fullscreen / wallpapers |
-| Print / Shift + Print | Full screenshot / selected region |
-| Super + 1–0 | Switch workspace |
-| Super + Shift + 1–0 | Move window to workspace |
-| Super + Ctrl + M | Toggle mirror / extended layout |
-| Super + Ctrl + O / I | Disable or restore external / laptop display |
-| Ctrl + Space | tmux prefix |
+</details>
