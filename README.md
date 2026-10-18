@@ -4,6 +4,8 @@ My Arch Linux / Hyprland desktop, with Catppuccin Mocha colors and muted blue ac
 Managed with Git and GNU Stow. Each top-level package mirrors its paths in `$HOME`,
 following [ThePrimeagen's layout](https://github.com/ThePrimeagen/.dotfiles).
 
+![Hyprland desktop with Waybar, Neovim, Kitty, tmux, Fastfetch and Thunar](.github/assets/desktop.png)
+
 ```text
 hypr/.config/hypr/hyprland.lua  → ~/.config/hypr/hyprland.lua
 kitty/.config/kitty/kitty.conf  → ~/.config/kitty/kitty.conf
