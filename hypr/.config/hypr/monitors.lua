@@ -28,14 +28,42 @@ setExtended()
 -- Fallback for other displays.
 hl.monitor({ output = "", mode = "preferred", position = "auto-left", scale = "auto" })
 
-for workspace = 1, 10 do
-    hl.workspace_rule({
-        workspace = tostring(workspace),
-        monitor = workspace <= 5 and laptop or external,
-        default = workspace == 1 or workspace == 6,
-        persistent = true,
-    })
+-- Bind workspaces to enabled desktops, using the sole desktop in mirror mode too.
+local previousLaptopTarget, previousExternalTarget
+local function updateWorkspaceRules()
+    local desktops = {}
+    local fallback
+    for _, monitor in ipairs(hl.get_monitors()) do
+        if not monitor.is_mirror then
+            desktops[monitor.name] = true
+            fallback = fallback or monitor.name
+        end
+    end
+    fallback = desktops[laptop] and laptop or (desktops[external] and external or fallback)
+    if not fallback then
+        return
+    end
+
+    local laptopTarget = desktops[laptop] and laptop or fallback
+    local externalTarget = desktops[external] and external or fallback
+    if laptopTarget == previousLaptopTarget and externalTarget == previousExternalTarget then
+        return
+    end
+    previousLaptopTarget, previousExternalTarget = laptopTarget, externalTarget
+
+    for workspace = 1, 10 do
+        hl.workspace_rule({
+            workspace = tostring(workspace),
+            monitor = workspace <= 5 and laptopTarget or externalTarget,
+            default = workspace == 1 or (workspace == 6 and laptopTarget ~= externalTarget),
+            persistent = true,
+        })
+    end
 end
+
+updateWorkspaceRules()
+hl.on("hyprland.start", updateWorkspaceRules)
+hl.on("monitor.layout_changed", updateWorkspaceRules)
 
 -- Mirrored outputs live on the source monitor's mirrors list.
 local function activeOutputs()

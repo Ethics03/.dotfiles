@@ -33,11 +33,7 @@
     "on-click": "activate",
     "all-outputs": false,
     "disable-scroll": true,
-    "show-special": false,
-    "persistent-workspaces": {
-      "eDP-1": [1, 2, 3, 4, 5],
-      "HDMI-A-1": [6, 7, 8, 9, 10]
-    }
+    "show-special": false
   },
   "clock": {
     "format": "{:%a %d %b \u00b7 %H:%M}",
