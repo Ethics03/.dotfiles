@@ -25,7 +25,7 @@ Install the apps you want first. Back up any existing configs before linking the
 
 ```sh
 sudo pacman -S --needed stow
-git clone https://github.com/Ethics03/dotfiles.git ~/dev/dotfiles
+git clone https://github.com/Ethics03/.dotfiles.git ~/dev/dotfiles
 cd ~/dev/dotfiles
 stow --simulate --verbose --target="$HOME" */
 stow --target="$HOME" */
