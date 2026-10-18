@@ -61,7 +61,7 @@ end
 hl.bind("SUPER + CTRL + M", function()
     local outputs = activeOutputs()
     if not outputs[laptop] or not outputs[external] then
-        notify("Both displays must be connected and enabled; restoring extended layout")
+        notify("All displays must be connected and enabled; restoring extended layout")
         restoreOutputs()
         return
     end
