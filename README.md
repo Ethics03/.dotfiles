@@ -99,8 +99,6 @@ Vicinae also starts in the background using its installed `vicinae.service`.
 Super + R currently opens Walker.
 NetworkManager, Bluetooth and power-profiles-daemon need their system services too.
 The default app settings also reference Helium, Vesktop and spotify-launcher.
-Agent Orchestrator's launcher expects its AppImage at
-`~/Applications/agent-orchestrator.AppImage` and opens it with native Wayland.
 
 For the look, install these separately:
 
