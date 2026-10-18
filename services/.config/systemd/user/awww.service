@@ -1,0 +1,8 @@
+[Unit]
+Description=Wallpaper daemon
+ConditionEnvironment=WAYLAND_DISPLAY
+
+[Service]
+ExecStart=/usr/bin/awww-daemon
+Restart=on-failure
+RestartSec=2

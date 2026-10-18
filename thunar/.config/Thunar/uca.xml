@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<actions>
+  <action>
+    <icon>utilities-terminal</icon>
+    <name>Open in Kitty</name>
+    <submenu />
+    <unique-id>nev-open-in-kitty</unique-id>
+    <command>kitty --directory %f</command>
+    <description>Open this folder in Kitty</description>
+    <range>1</range>
+    <patterns>*</patterns>
+    <directories />
+  </action>
+  <action>
+    <icon>preferences-desktop-wallpaper</icon>
+    <name>Set as wallpaper</name>
+    <submenu />
+    <unique-id>nev-set-wallpaper</unique-id>
+    <command>python3 /home/nev/.config/hypr/wallpaper-picker.py --set %f</command>
+    <description>Apply this image and remember it for the next login</description>
+    <range>1</range>
+    <patterns>*.png;*.jpg;*.jpeg;*.webp;*.avif;*.gif;*.bmp;*.tif;*.tiff;*.PNG;*.JPG;*.JPEG;*.WEBP;*.AVIF;*.GIF;*.BMP;*.TIF;*.TIFF</patterns>
+    <image-files />
+  </action>
+</actions>

@@ -1,0 +1,132 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 28,
+  "spacing": 0,
+  "exclusive": true,
+  "modules-left": [
+    "custom/launcher",
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "mpris",
+    "clock"
+  ],
+  "modules-right": [
+    "wlr/taskbar",
+    "tray",
+    "custom/separator",
+    "pulseaudio",
+    "backlight",
+    "bluetooth",
+    "network",
+    "power-profiles-daemon",
+    "battery"
+  ],
+  "custom/launcher": {
+    "format": " ",
+    "tooltip-format": "Open Walker \u00b7 Super + R",
+    "on-click": "walker"
+  },
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "on-click": "activate",
+    "all-outputs": false,
+    "disable-scroll": true,
+    "show-special": false,
+    "persistent-workspaces": {
+      "eDP-1": [1, 2, 3, 4, 5],
+      "HDMI-A-1": [6, 7, 8, 9, 10]
+    }
+  },
+  "clock": {
+    "format": "{:%a %d %b \u00b7 %H:%M}",
+    "format-alt": "{:%A, %d %B %Y}",
+    "tooltip-format": "{calendar}"
+  },
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 16,
+    "icon-theme": [
+      "breeze",
+      "Adwaita"
+    ],
+    "all-outputs": false,
+    "tooltip-format": "{title}",
+    "on-click": "activate"
+  },
+  "tray": {
+    "icon-size": 14,
+    "spacing": 8
+  },
+  "pulseaudio": {
+    "format": "{volume}%",
+    "format-muted": "muted",
+    "tooltip-format": "{desc}\nClick to mute \u00b7 right-click for sound settings \u00b7 scroll to adjust volume",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 2%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-",
+    "on-click-right": "pavucontrol"
+  },
+  "backlight": {
+    "device": "nvidia_wmi_ec_backlight",
+    "format": "{percent}%",
+    "tooltip-format": "Brightness: {percent}%\nScroll to adjust",
+    "on-scroll-up": "brightnessctl -d nvidia_wmi_ec_backlight -e4 -n2 set 5%+",
+    "on-scroll-down": "brightnessctl -d nvidia_wmi_ec_backlight -e4 -n2 set 5%-"
+  },
+  "network": {
+    "tooltip-format-wifi": "{essid} \u00b7 {signalStrength}%\n{ipaddr}\nClick for connection settings",
+    "tooltip-format-ethernet": "Ethernet \u00b7 {ipaddr}\nClick for connection settings",
+    "tooltip-format-disconnected": "Disconnected\nClick for connection settings",
+    "on-click": "nm-connection-editor",
+    "format": " "
+  },
+  "bluetooth": {
+    "format": " ",
+    "format-no-controller": "",
+    "tooltip-format": "Bluetooth: {status}\nClick to manage devices",
+    "tooltip-format-connected": "Bluetooth: {num_connections} connected\n{device_enumerate}\nClick to manage devices",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "on-click": "blueman-manager"
+  },
+  "power-profiles-daemon": {
+    "format": " ",
+    "tooltip-format": "Power profile: {profile}\nClick to switch profile"
+  },
+  "battery": {
+    "bat": "BAT1",
+    "interval": 30,
+    "states": {
+      "warning": 25,
+      "critical": 10
+    },
+    "format": "{capacity}%",
+    "tooltip-format": "{capacity}% \u00b7 {timeTo}"
+  },
+  "custom/separator": {
+    "format": "\u2502",
+    "tooltip": false
+  },
+  "mpris": {
+    "format": "{status_icon} {dynamic}",
+    "format-paused": "{status_icon} {dynamic}",
+    "tooltip-format": "{player} \u00b7 {status}\n{artist} \u00b7 {album}",
+    "dynamic-order": [
+      "title",
+      "artist"
+    ],
+    "title-len": 28,
+    "artist-len": 16,
+    "dynamic-len": 36,
+    "max-length": 40,
+    "player-icons": {
+      "default": "\u266b"
+    },
+    "status-icons": {
+      "playing": "\uf04b",
+      "paused": "\uf04c",
+      "stopped": "\uf04d"
+    }
+  }
+}

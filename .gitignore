@@ -1,0 +1,21 @@
+# Editor files and old config backups
+*~
+*.swp
+*.swo
+*.bak
+*.bak-*
+__pycache__/
+*.pyc
+*.log
+
+# Local shell state can contain private variables.
+fish_variables
+fish_history
+
+# Generated service enablement links
+*.wants/
+*.requires/
+
+# Local overrides and credentials
+.env
+.env.*

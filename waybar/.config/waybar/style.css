@@ -1,0 +1,180 @@
+@define-color base #1e1e2e;
+@define-color text #cdd6f4;
+@define-color muted #a6adc8;
+@define-color surface #313244;
+@define-color border #45475a;
+@define-color accent #526b94;
+
+* {
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 12px;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+}
+
+window#waybar {
+  background: @base;
+  color: @text;
+  border-bottom: 1px solid #2a2b3c;
+}
+
+button {
+  background: transparent;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+button:hover {
+  background: @surface;
+}
+
+#custom-launcher {
+  min-width: 28px;
+  min-height: 21px;
+  margin: 3px 2px;
+  padding: 0;
+  background-image: url("icons/arch.svg");
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  background-position: center;
+}
+
+#workspaces {
+  margin: 3px 0;
+}
+
+#workspaces button {
+  color: #6c7086;
+  min-width: 28px;
+  min-height: 21px;
+  margin: 0 2px;
+  padding: 0;
+}
+
+#workspaces button.active {
+  color: @text;
+  background: @surface;
+  box-shadow: inset 0 -2px @accent;
+}
+
+#workspaces button.urgent {
+  color: #f38ba8;
+}
+
+#workspaces button.empty {
+  color: #585b70;
+}
+
+#workspaces button.active.empty {
+  color: @text;
+}
+
+#clock {
+  color: @muted;
+  padding: 0 12px;
+}
+
+#mpris {
+  color: @muted;
+  margin: 0 6px;
+}
+
+/* Equal spacing between controls; icon-to-text spacing is set below. */
+#tray, #pulseaudio, #backlight, #bluetooth, #network, #power-profiles-daemon, #battery {
+  color: @muted;
+  margin: 0 7px;
+  padding: 0;
+  min-height: 27px;
+}
+
+#tray {
+  margin-right: 4px;
+}
+
+#custom-separator {
+  color: #313244;
+  margin: 0 1px;
+  font-size: 8px;
+}
+
+#taskbar {
+  margin: 3px 0 3px 0;
+}
+
+#taskbar button {
+  min-height: 21px;
+  min-width: 16px;
+  padding: 0 6px;
+  margin: 0 2px;
+}
+
+#taskbar button.active {
+  background: @surface;
+  box-shadow: inset 0 -2px @accent;
+}
+
+#taskbar button image {
+  padding: 0;
+  margin: 0;
+}
+
+#battery {
+  margin-right: 12px;
+}
+
+#pulseaudio.muted, #network.disconnected {
+  color: #6c7086;
+}
+
+#battery.charging, #battery.plugged {
+  color: #a6e3a1;
+}
+
+#battery.warning:not(.charging):not(.plugged) {
+  color: #f9e2af;
+}
+
+#battery.critical:not(.charging):not(.plugged) {
+  color: #f38ba8;
+}
+
+tooltip {
+  background: @base;
+  border: 1px solid @border;
+}
+
+tooltip label {
+  color: @text;
+  padding: 6px;
+}
+
+/* Shared 14 px icon canvas; percentages start 6 px after the icon. */
+#pulseaudio, #backlight, #battery, #bluetooth, #network, #power-profiles-daemon {
+  background-repeat: no-repeat;
+  background-size: 14px 14px;
+  background-position: center;
+}
+
+#pulseaudio, #backlight, #battery {
+  background-position: left center;
+  padding-left: 20px;
+}
+
+#bluetooth, #network, #power-profiles-daemon {
+  min-width: 14px;
+}
+
+#pulseaudio { background-image: url("icons/volume.svg"); }
+#pulseaudio.muted { background-image: url("icons/volume-muted.svg"); }
+#backlight { background-image: url("icons/sun.svg"); }
+#battery { background-image: url("icons/battery.svg"); }
+#battery.charging, #battery.plugged { background-image: url("icons/battery-charging.svg"); }
+#bluetooth { background-image: url("icons/bluetooth.svg"); }
+#bluetooth.off, #bluetooth.disabled { background-image: url("icons/bluetooth-off.svg"); }
+#network { background-image: url("icons/wifi.svg"); }
+#network.ethernet, #network.linked { background-image: url("icons/ethernet.svg"); }
+#network.disconnected { background-image: url("icons/wifi-off.svg"); }
+#power-profiles-daemon { background-image: url("icons/power-profile-balanced.svg"); }
+#power-profiles-daemon.performance { background-image: url("icons/power-profile-performance.svg"); }
+#power-profiles-daemon.power-saver { background-image: url("icons/power-profile-power-saver.svg"); }

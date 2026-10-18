@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Wallpapers
+Comment=Choose a wallpaper from Pictures/Wallpapers
+Exec=python3 /home/nev/.config/hypr/wallpaper-picker.py
+Icon=preferences-desktop-wallpaper
+Terminal=false
+Categories=Settings;DesktopSettings;
+Keywords=wallpaper;background;

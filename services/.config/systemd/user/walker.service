@@ -1,0 +1,16 @@
+[Unit]
+Description=Walker application launcher
+Requires=elephant.service
+After=elephant.service graphical-session.target
+PartOf=graphical-session.target
+ConditionEnvironment=WAYLAND_DISPLAY
+
+[Service]
+Type=dbus
+BusName=dev.benz.walker
+# Recommended by Walker for slow GTK rendering on NVIDIA.
+Environment=GSK_RENDERER=cairo
+ExecStart=/usr/bin/walker --gapplication-service
+Restart=on-failure
+RestartSec=2
+Slice=session.slice

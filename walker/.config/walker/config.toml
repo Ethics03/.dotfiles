@@ -1,0 +1,24 @@
+theme = "mocha"
+close_when_open = true
+click_to_close = true
+hide_quick_activation = true
+hide_action_hints = true
+
+[placeholders]
+default = { input = "Search apps…", list = "No results" }
+
+[providers]
+default = ["desktopapplications"]
+empty = ["desktopapplications"]
+max_results = 30
+prefixes = []
+
+[providers.actions]
+desktopapplications = [
+  { action = "start", default = true, bind = "Return" },
+  { action = "start:keep", label = "open+next", bind = "shift Return", after = "KeepOpen" },
+  { action = "pin", bind = "ctrl p", after = "AsyncReload" },
+  { action = "unpin", bind = "ctrl p", after = "AsyncReload" },
+  { action = "pinup", bind = "ctrl n", after = "AsyncReload" },
+  { action = "pindown", bind = "ctrl m", after = "AsyncReload" },
+]
