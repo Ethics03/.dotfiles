@@ -23,7 +23,7 @@ hl.on("hyprland.start", function()
         "dbus-update-activation-environment --systemd "
         .. "DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE QT_QPA_PLATFORMTHEME "
         .. "&& systemctl --user start "
-        .. "hyprpolkitagent.service elephant.service walker.service waybar.service"
+        .. "hyprpolkitagent.service elephant.service walker.service waybar.service vicinae.service"
     )
     hl.exec_cmd(terminal)
     hl.exec_cmd(notification)

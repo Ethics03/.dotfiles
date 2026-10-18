@@ -95,6 +95,8 @@ fastfetch neovim fd ripgrep fzf lazygit tree-sitter-cli stow
 
 Walker uses `walker-bin`, `elephant` and `elephant-desktopapplications` from the AUR.
 Hyprland starts Walker, Elephant, Waybar and the authentication agent at login.
+Vicinae also starts in the background using its installed `vicinae.service`.
+Super + R currently opens Walker.
 NetworkManager, Bluetooth and power-profiles-daemon need their system services too.
 The default app settings also reference Helium, Vesktop and spotify-launcher.
 
