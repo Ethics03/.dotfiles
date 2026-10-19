@@ -17,7 +17,8 @@ My Arch + Hyprland setup, using Catppuccin Mocha with muted blue accents.
 | Editor | Neovim with LazyVim |
 | Wallpapers | awww, with a picker in Walker |
 
-Each app has its own folder. GNU Stow links the configs into place.
+Each app has its own folder. GNU Stow links the configs into place, and wallpapers
+live directly in `wallpapers/`.
 
 ## Using it
 
@@ -27,12 +28,14 @@ Install the apps you want first. Back up any existing configs before linking the
 sudo pacman -S --needed stow
 git clone https://github.com/Ethics03/.dotfiles.git ~/dev/dotfiles
 cd ~/dev/dotfiles
-stow --simulate --verbose --target="$HOME" */
-stow --target="$HOME" */
+stow --target="$HOME" applications fastfetch fish gtk hypr kitty mako nvim qt6ct \
+  services starship thunar tmux walker waybar wireplumber
+mkdir -p "$HOME/Pictures"
+ln -s "$PWD/wallpapers" "$HOME/Pictures/Wallpapers"
 systemctl --user daemon-reload
 ```
 
-The first Stow command is a preview. You can also link just a few folders, like
+Add `--simulate --verbose` to preview the Stow command. You can also link just a few folders, like
 `stow --target="$HOME" kitty tmux`, or unlink them with
 `stow --delete --target="$HOME" kitty tmux`.
 
@@ -56,8 +59,8 @@ git push
 ```
 
 Nothing pushes automatically. On another machine, start with a clean working tree,
-then use `git pull --ff-only` and `stow --restow --target="$HOME" */` to update the links.
-Reload the apps you changed.
+then use `git pull --ff-only` and rerun the Stow command above with `--restow` to
+update the config links. Reload the apps you changed.
 
 </details>
 
