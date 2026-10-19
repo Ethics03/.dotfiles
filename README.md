@@ -76,7 +76,8 @@ Reload the apps you changed.
 | Ctrl + Space | tmux prefix |
 
 Drop wallpapers in `~/Pictures/Wallpapers`, then press **Super + W** to pick one.
-Wallpapers and downloaded themes aren't included in the repo.
+That folder is linked into this repo, so adding or removing wallpapers there shows
+up in Git too. Downloaded themes aren't included.
 
 <details>
 <summary>Packages and theme setup</summary>
